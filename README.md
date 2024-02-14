@@ -4,6 +4,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
+use nvm use 18.17.0
+yarn
+yarn build
+yarn dev
+
+
 ```bash
 npm run dev
 # or
