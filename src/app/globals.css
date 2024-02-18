@@ -29,7 +29,7 @@
   }
 
   .box {
-    @apply border-solid;
+    @apply bg-gray text-center border py-4 px-8 rounded;
   }
 
   .invisible {

@@ -87,13 +87,14 @@ export default function VerifyProof(props: { publicSignals: snarkjs.PublicSignal
             }} >
                 Verify Proof In Smart Contract
             </button>
-            <div className={`result-box ${proofIsValid !== undefined ? '' : 'invisible'}`}>
-                {proofIsValid !== undefined && (
-                    <>
+            {proofIsValid !== undefined && (
+                <>
+                    <br />
+                    <div className={`result-box ${proofIsValid !== undefined ? '' : 'invisible'}`}>
                         Your proof is {proofIsValid ? 'valid.' : 'not valid.'}
-                    </>
-                )}
-            </div>
+                    </div>
+                </>
+            )}
 
         </>
     )

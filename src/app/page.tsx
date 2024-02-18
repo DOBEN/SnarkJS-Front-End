@@ -2,6 +2,8 @@
 import * as snarkjs from 'snarkjs';
 
 import CommectWallet from '../components/ConnectWallet'
+import VerifyProofInSmartContract from '../components/VerifyProofInSmartContract';
+import CreateProof from '../components/CreateProof';
 
 import { WagmiConfig, createConfig, configureChains, sepolia } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
@@ -11,8 +13,6 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 import { ALCHEMY_API_KEY, WALLET_CONNECT_PROJECT_ID } from '../../constants'
 import { useEffect, useState } from 'react';
-import VerifyProofInSmartContract from '@/components/VerifyProofInSmartContract';
-import CreateProof from '@/components/CreateProof';
 
 // Configure chains & providers with the Alchemy provider.
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
@@ -54,9 +54,12 @@ export default function Home() {
 
   return (
     <WagmiConfig config={config}>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="flex flex-col items-center justify-between">
+        <br />
         <CommectWallet />
+        <br />
         <CreateProof proof={proof} publicSignals={publicSignals} setProof={setProof} setPublicSignals={setPublicSignals} />
+        <br />
         <VerifyProofInSmartContract proof={proof} publicSignals={publicSignals} />
       </main>
     </WagmiConfig>
