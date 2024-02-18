@@ -4,6 +4,8 @@ This is a demo dApp to showcase how to generate ZK-SNARK proofs (groth16 algorit
 
 Related repo to generate the [circuits](https://github.com/DOBEN/Hardhat-with-Circom).
 
+![front-end-flow](./gif/front_end_flow.gif)
+
 ## Prerequisites
 
 - `node` installed
