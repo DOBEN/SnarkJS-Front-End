@@ -56,7 +56,7 @@ export default function Home() {
     <WagmiConfig config={config}>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <CommectWallet />
-        <CreateProof proof={proof} setProof={setProof} setPublicSignals={setPublicSignals} />
+        <CreateProof proof={proof} publicSignals={publicSignals} setProof={setProof} setPublicSignals={setPublicSignals} />
         <VerifyProofInSmartContract proof={proof} publicSignals={publicSignals} />
       </main>
     </WagmiConfig>

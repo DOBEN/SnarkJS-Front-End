@@ -72,8 +72,6 @@ export default function VerifyProof(props: { publicSignals: snarkjs.PublicSignal
                     functionName: 'verifyProof',
                     args: [a, b, c, publicSignals],
                 })
-                console.log("data")
-                console.log(data)
                 setProofIsValid(data as boolean)
             }
 
@@ -83,17 +81,20 @@ export default function VerifyProof(props: { publicSignals: snarkjs.PublicSignal
 
     return (
         <>
-            <button onClick={() => {
+            <button className="btn btn-blue" onClick={() => {
                 setProofIsValid(undefined)
                 setClickButton(!clickButton);
-            }} >   
-               Verify Proof In Smart Contract
+            }} >
+                Verify Proof In Smart Contract
             </button>
-
-            {proofIsValid && (<div className="text-green">
-                Your proof is {proofIsValid ? 'valid.' : 'not valid.'}
+            <div className={`result-box ${proofIsValid !== undefined ? '' : 'invisible'}`}>
+                {proofIsValid !== undefined && (
+                    <>
+                        Your proof is {proofIsValid ? 'valid.' : 'not valid.'}
+                    </>
+                )}
             </div>
-            )}
+
         </>
     )
 }

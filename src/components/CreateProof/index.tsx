@@ -4,8 +4,9 @@ export default function CreateProof(props: {
     setPublicSignals: (arg0: snarkjs.PublicSignals) => void | undefined,
     setProof: (args0: snarkjs.Groth16Proof) => void | undefined,
     proof: snarkjs.Groth16Proof | undefined
+    publicSignals: snarkjs.PublicSignals | undefined
 }) {
-    const { setPublicSignals, setProof, proof } = props;
+    const { setPublicSignals, setProof, proof, publicSignals } = props;
 
     async function calculateProof(setPublicSignals: (arg0: snarkjs.PublicSignals) => void, setProof: (arg0: snarkjs.Groth16Proof) => void) {
 
@@ -14,30 +15,38 @@ export default function CreateProof(props: {
                 in: [1, 2, 3, 4, 5]
             }, "./average.wasm", "./average.zkey");
 
-        console.log("proof: ")
-        console.log(JSON.stringify(proof))
-        console.log("publicSignals: " + publicSignals)
-
         setPublicSignals(publicSignals)
         setProof(proof)
 
-        const vkey = await fetch("average.vkey.json").then(function (res) {
-            return res.json();
-        });
-
-        console.log("vkey:")
-        console.log(vkey)
-        const res = await snarkjs.groth16.verify(vkey, publicSignals, proof);
-        console.log("res")
-        console.log(res)
+        // Add this to verify the proof in browser.
+        //
+        // const vkey = await fetch("average.vkey.json").then(function (res) {
+        //     return res.json();
+        // });
+        //  const res = await snarkjs.groth16.verify(vkey, publicSignals, proof);
     }
     return (
         <>
-            <button onClick={() => calculateProof(setPublicSignals, setProof)}>Calculate Proof</button>
+            <button className="btn btn-blue" onClick={() => calculateProof(setPublicSignals, setProof)}>Calculate Proof</button>
             {
                 proof && (
-                    <div className="text-green">
+                    <div className="result-box">
+                        <div>
+                            Proof:
+                        </div>
+                        <br />
                         {JSON.stringify(proof)}
+                    </div>
+                )
+            }
+            {
+                publicSignals && (
+                    <div className="result-box">
+                        <div>
+                            Public Signals:
+                        </div>
+                        <br />
+                        {publicSignals}
                     </div>
                 )
             }
